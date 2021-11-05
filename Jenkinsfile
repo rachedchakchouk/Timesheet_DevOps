@@ -11,7 +11,7 @@ stages{
          
          stage("Test,Build"){
           steps{
-          bat """mvn clean package"""
+          bat """mvn clean package -Dmaven.test.skip=true"""
           }
           }
           
