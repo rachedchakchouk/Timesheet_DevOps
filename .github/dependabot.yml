@@ -1,0 +1,67 @@
+# Dependabot : mises à jour groupées, hebdomadaires (lundi 06:00, heure de Tunis).
+# Les montées majeures de Spring Boot se font à la main (Spring Boot 3 : Java 17 et
+# javax -> jakarta) ; les alertes et correctifs de sécurité restent actifs.
+version: 2
+updates:
+  - package-ecosystem: "maven"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+      day: "monday"
+      time: "06:00"
+      timezone: "Africa/Tunis"
+    open-pull-requests-limit: 5
+    commit-message:
+      prefix: "deps"
+    labels: ["dépendances"]
+    groups:
+      securite-maven:
+        applies-to: security-updates
+        patterns: ["*"]
+      maven-mineures-correctives:
+        applies-to: version-updates
+        patterns: ["*"]
+        update-types: ["minor", "patch"]
+    ignore:
+      - dependency-name: "org.springframework.boot:*"
+        update-types: ["version-update:semver-major"]
+
+  - package-ecosystem: "docker"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+      day: "monday"
+      time: "06:00"
+      timezone: "Africa/Tunis"
+    open-pull-requests-limit: 5
+    commit-message:
+      prefix: "deps"
+    labels: ["dépendances"]
+    groups:
+      securite-docker:
+        applies-to: security-updates
+        patterns: ["*"]
+      docker-mineures-correctives:
+        applies-to: version-updates
+        patterns: ["*"]
+        update-types: ["minor", "patch"]
+    ignore:
+      # Java 8 tant que le projet compile en 1.8 (passage à 17 avec Spring Boot 3)
+      - dependency-name: "eclipse-temurin"
+        update-types: ["version-update:semver-major"]
+
+  # ---- Actions GitHub de l'intégration continue (.github/workflows)
+  - package-ecosystem: "github-actions"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+      day: "monday"
+      time: "06:00"
+      timezone: "Africa/Tunis"
+    open-pull-requests-limit: 5
+    commit-message:
+      prefix: "deps"
+    labels: ["dépendances"]
+    groups:
+      actions:
+        patterns: ["*"]

@@ -11,7 +11,7 @@ projects and missions (internal and external), shipped through a full
 
 | Layer | Tools |
 |---|---|
-| Backend | Java 8, Spring Boot 2.5, Spring Web, Spring Data JPA / Hibernate, Lombok, Log4j 2 |
+| Backend | Java 8, Spring Boot 2.7, Spring Web, Spring Data JPA / Hibernate, Lombok, Log4j 2 |
 | Database | MySQL |
 | Build & quality | Maven, JUnit, JaCoCo, SonarQube |
 | CI/CD | Jenkins (declarative pipeline), Nexus (artifact repository) |
